@@ -80,7 +80,7 @@ function App() {
         />
         
         <main className="flex-1 overflow-y-auto p-4 md:p-6">
-          <div className="max-w-7xl mx-auto">
+          <div className="max-w-7xl mx-auto w-full">
             <div className="flex flex-col md:flex-row md:items-center justify-between mb-6 md:mb-8 gap-4">
               <div className="flex items-center">
                 <div className="md:hidden mr-2">

@@ -1,5 +1,5 @@
 import React from 'react';
-import { ExternalLink, Star, Github, Youtube, BookOpen, FileText, Database } from 'lucide-react';
+import { ExternalLink, Star, Github, Youtube, BookOpen, FileText, Database, Globe } from 'lucide-react';
 import { Resource } from '../types';
 
 interface ResourceCardProps {
@@ -22,7 +22,7 @@ const ResourceCard: React.FC<ResourceCardProps> = ({ resource }) => {
       case 'database':
         return <Database className="h-5 w-5 text-purple-600" />;
       default:
-        return <ExternalLink className="h-5 w-5 text-gray-600" />;
+        return <Globe className="h-5 w-5 text-gray-600" />;
     }
   };
 
@@ -33,6 +33,11 @@ const ResourceCard: React.FC<ResourceCardProps> = ({ resource }) => {
           <div className="flex items-center">
             {getResourceTypeIcon()}
             <span className="ml-2 text-sm font-medium text-gray-500 uppercase">{resource.type}</span>
+            {resource.language && (
+              <span className="ml-2 px-2 py-0.5 bg-purple-100 text-purple-800 text-xs rounded-full">
+                {resource.language}
+              </span>
+            )}
           </div>
           {resource.stars && (
             <div className="flex items-center text-yellow-500">

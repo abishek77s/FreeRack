@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, Gift } from 'lucide-react';
 import { Category } from '../types';
 import { contentTypeCategories } from '../data/categories';
 
@@ -77,6 +77,18 @@ const MobileMenu: React.FC<MobileMenuProps> = ({
                   </li>
                 ))}
               </ul>
+              
+              <div className="mt-6 pt-4 border-t border-gray-200">
+                <a 
+                  href="https://education.github.com/pack" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="flex items-center px-3 py-2 rounded-md text-green-600 hover:bg-green-50"
+                >
+                  <Gift className="h-5 w-5 mr-2" />
+                  <span className="font-medium">Claim Github Student Pack</span>
+                </a>
+              </div>
             </div>
           </div>
         </div>

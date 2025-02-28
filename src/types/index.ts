@@ -14,6 +14,7 @@ export interface Resource {
   image?: string;
   tags?: string[];
   dateAdded: string;
+  language?: string;
 }
 
 export interface Category {
@@ -21,4 +22,9 @@ export interface Category {
   name: string;
   icon: ReactNode;
   description?: string;
+}
+
+export interface Language {
+  id: string;
+  name: string;
 }
