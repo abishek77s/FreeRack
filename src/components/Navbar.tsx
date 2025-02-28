@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Github, BookOpen, Plus, Gift } from "lucide-react";
+import { Plus, Gift } from "lucide-react";
 import SubmitResourceForm from "./SubmitResourceForm";
 import SubmitSuccess from "./SubmitSuccess";
 
@@ -40,14 +40,7 @@ const Navbar: React.FC = () => {
             </span>
           </div>
 
-          <nav className="hidden md:flex space-x-4 lg:space-x-8">
-            <button
-              onClick={() => setShowSubmitForm(true)}
-              className="inline-flex items-center text-white bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-md text-sm font-medium"
-            >
-              <Plus className="h-4 w-4 mr-1" />
-              Submit Resource
-            </button>
+          <nav className="hidden md:flex space-x-4 lg:space-x-4">
             <a
               href="https://education.github.com/pack"
               target="_blank"
@@ -57,9 +50,16 @@ const Navbar: React.FC = () => {
               <Gift className="h-4 w-4 mr-1" />
               Claim Github Student Pack
             </a>
+            <button
+              onClick={() => setShowSubmitForm(true)}
+              className="inline-flex items-center text-white bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-md text-sm font-medium"
+            >
+              <Plus className="h-4 w-4 mr-1" />
+              Submit Resource
+            </button>
           </nav>
 
-          <div className="flex items-center space-x-2">
+          <div className="flex items-center space-x-2 lg:hidden">
             <button
               onClick={() => setShowSubmitForm(true)}
               className="md:hidden text-blue-600 hover:text-blue-800 p-1"
@@ -73,14 +73,6 @@ const Navbar: React.FC = () => {
               className="md:hidden text-green-600 hover:text-green-800 p-1"
             >
               <Gift className="h-6 w-6" />
-            </a>
-            <a
-              href="https://github.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-gray-500 hover:text-gray-700 p-1"
-            >
-              <Github className="h-6 w-6" />
             </a>
           </div>
         </div>

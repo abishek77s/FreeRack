@@ -342,7 +342,7 @@ export const resources: Resource[] = [
     id: '36',
     title: 'Aptitude Questions and Answers',
     description: 'Collection of aptitude questions with detailed solutions for competitive exams',
-    url: 'https://www.tutorialspoint.com/aptitude/index.htm',
+    url: 'https://www.tutorialspoint.com/quantitative_aptitude/index.htm',
     type: 'website',
     categories: ['aptitude', 'tutorials'],
     author: 'TutorialsPoint',
