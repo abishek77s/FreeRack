@@ -1,6 +1,18 @@
 import { Resource } from '../types';
 
+// Add a readme resource
+const readmeResource: Resource = {
+  id: 'readme-1',
+  title: 'About FreeRack',
+  description: 'FreeRack is a curated collection of free resources for students and developers. Our mission is to make high-quality learning materials accessible to everyone, regardless of their financial situation.',
+  url: '#',
+  type: 'website',
+  categories: ['readme'],
+  dateAdded: '2025-01-01'
+};
+
 export const resources: Resource[] = [
+  readmeResource,
   // GitHub Repositories
   {
     id: '1',

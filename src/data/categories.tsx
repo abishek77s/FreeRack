@@ -16,10 +16,60 @@ import {
   PenTool,
   BrainCircuit,
   Puzzle,
+  Info,
 } from "lucide-react";
 import { Category } from "../types";
 
+// Main category groups
+export const categoryGroups = [
+  {
+    id: "readme",
+    name: "Read Me",
+    categories: ["readme"],
+  },
+  {
+    id: "programming",
+    name: "Programming & Development",
+    categories: [
+      "programming-languages",
+      "web-development",
+      "mobile-development",
+    ],
+  },
+  {
+    id: "data",
+    name: "Data & Algorithms",
+    categories: ["data-structures", "leetcode", "databases"],
+  },
+  {
+    id: "cs",
+    name: "Computer Science & System Design",
+    categories: ["system-design", "computer-science"],
+  },
+  {
+    id: "networking",
+    name: "Networking & Cloud",
+    categories: ["networking", "devops"],
+  },
+  {
+    id: "skills",
+    name: "Technical & Soft Skills",
+    categories: ["aptitude"],
+  },
+  {
+    id: "tools",
+    name: "Tools & Design",
+    categories: ["tools", "design"],
+  },
+];
+
 export const categories: Category[] = [
+  {
+    id: "readme",
+    name: "Read Me",
+    icon: <Info className="h-5 w-5" />,
+    description: "About FreeRack and how to use this resource collection",
+  },
   {
     id: "programming-languages",
     name: "Programming Languages",

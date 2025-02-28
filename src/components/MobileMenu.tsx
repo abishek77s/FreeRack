@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { Menu, X, Gift } from 'lucide-react';
+import { Menu, X, Gift, ChevronDown, ChevronRight } from 'lucide-react';
 import { Category } from '../types';
-import { contentTypeCategories } from '../data/categories';
+import { categoryGroups } from '../data/categories';
 
 interface MobileMenuProps {
   categories: Category[];
@@ -15,14 +15,34 @@ const MobileMenu: React.FC<MobileMenuProps> = ({
   onSelectCategory
 }) => {
   const [isOpen, setIsOpen] = useState(false);
+  const [expandedGroups, setExpandedGroups] = useState<Record<string, boolean>>({
+    readme: true,
+    programming: true,
+    data: false,
+    cs: false,
+    networking: false,
+    skills: false,
+    tools: false
+  });
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
 
+  const toggleGroup = (groupId: string) => {
+    setExpandedGroups(prev => ({
+      ...prev,
+      [groupId]: !prev[groupId]
+    }));
+  };
+
   const handleCategorySelect = (categoryId: string | null) => {
     onSelectCategory(categoryId);
     setIsOpen(false);
+  };
+
+  const getCategoryById = (id: string) => {
+    return categories.find(cat => cat.id === id);
   };
 
   return (
@@ -61,19 +81,44 @@ const MobileMenu: React.FC<MobileMenuProps> = ({
                     All Resources
                   </button>
                 </li>
-                {categories.map((category) => (
-                  <li key={category.id}>
-                    <button
-                      className={`w-full text-left px-3 py-2 rounded-md flex items-center ${
-                        selectedCategory === category.id
-                          ? 'bg-blue-50 text-blue-700 font-medium'
-                          : 'text-gray-700 hover:bg-gray-100'
-                      }`}
-                      onClick={() => handleCategorySelect(category.id)}
+                
+                {categoryGroups.map((group) => (
+                  <li key={group.id} className="mt-2">
+                    <div 
+                      className="flex items-center justify-between px-3 py-2 text-sm font-medium text-gray-900 cursor-pointer hover:bg-gray-50 rounded-md"
+                      onClick={() => toggleGroup(group.id)}
                     >
-                      <span className="mr-2">{category.icon}</span>
-                      {category.name}
-                    </button>
+                      <span>{group.name}</span>
+                      {expandedGroups[group.id] ? 
+                        <ChevronDown className="h-4 w-4 text-gray-500" /> : 
+                        <ChevronRight className="h-4 w-4 text-gray-500" />
+                      }
+                    </div>
+                    
+                    {expandedGroups[group.id] && (
+                      <ul className="ml-2 mt-1 space-y-1">
+                        {group.categories.map((categoryId) => {
+                          const category = getCategoryById(categoryId);
+                          if (!category) return null;
+                          
+                          return (
+                            <li key={categoryId}>
+                              <button
+                                className={`w-full text-left px-3 py-2 rounded-md flex items-center ${
+                                  selectedCategory === categoryId
+                                    ? 'bg-blue-50 text-blue-700 font-medium'
+                                    : 'text-gray-700 hover:bg-gray-100'
+                                }`}
+                                onClick={() => handleCategorySelect(categoryId)}
+                              >
+                                <span className="mr-2">{category.icon}</span>
+                                {category.name}
+                              </button>
+                            </li>
+                          );
+                        })}
+                      </ul>
+                    )}
                   </li>
                 ))}
               </ul>
