@@ -104,17 +104,7 @@ export const resources: Resource[] = [
     dateAdded: '2023-02-08'
   },
   
-  // Books
-  {
-    id: '11',
-    title: 'Clean Code: A Handbook of Agile Software Craftsmanship',
-    description: 'A book that teaches principles, patterns, and practices of writing clean code',
-    url: 'https://www.amazon.com/Clean-Code-Handbook-Software-Craftsmanship/dp/0132350882',
-    type: 'book',
-    categories: ['books', 'programming-languages'],
-    author: 'Robert C. Martin',
-    dateAdded: '2023-01-12'
-  },
+ 
   {
     id: '12',
     title: 'Eloquent JavaScript',
@@ -144,16 +134,6 @@ export const resources: Resource[] = [
     categories: ['books', 'system-design', 'databases'],
     author: 'Martin Kleppmann',
     dateAdded: '2023-01-28'
-  },
-  {
-    id: '15',
-    title: 'Cracking the Coding Interview',
-    description: 'A book that helps you prepare for coding interviews with 189 programming questions and solutions',
-    url: 'https://www.crackingthecodinginterview.com/',
-    type: 'book',
-    categories: ['books', 'data-structures', 'programming-languages', 'leetcode'],
-    author: 'Gayle Laakmann McDowell',
-    dateAdded: '2023-02-12'
   },
   
   // Courses
