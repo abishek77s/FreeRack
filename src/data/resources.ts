@@ -1,18 +1,9 @@
 import { Resource } from '../types';
 
-// Add a readme resource
-const readmeResource: Resource = {
-  id: 'readme-1',
-  title: 'About FreeRack',
-  description: 'FreeRack is a curated collection of free resources for students and developers. Our mission is to make high-quality learning materials accessible to everyone, regardless of their financial situation.',
-  url: '#',
-  type: 'website',
-  categories: ['readme'],
-  dateAdded: '2025-01-01'
-};
+
 
 export const resources: Resource[] = [
-  readmeResource,
+  
   // GitHub Repositories
   {
     id: '1',
@@ -247,7 +238,159 @@ export const resources: Resource[] = [
     categories: ['web-development', 'programming-languages', 'tutorials'],
     dateAdded: '2023-01-29'
   },
-  
+  {
+    "id": "1",
+    "title": "GeeksforGeeks Programming",
+    "description": "Comprehensive tutorials and practice problems across various programming languages.",
+    "url": "https://www.geeksforgeeks.org/programming/",
+    "type": "website",
+    "categories": ["programming", "tutorials", "practice"],
+    "dateAdded": "2025-02-28"
+  },
+  {
+    "id": "2",
+    "title": "Exercism",
+    "description": "Free coding practice and mentorship in over 70 programming languages.",
+    "url": "https://exercism.org/",
+    "type": "website",
+    "categories": ["programming", "practice", "mentorship"],
+    "dateAdded": "2025-02-28"
+  },
+  {
+    "id": "3",
+    "title": "freeCodeCamp",
+    "description": "Self-paced coding tutorials and exercises covering web development, algorithms, and more.",
+    "url": "https://www.freecodecamp.org/",
+    "type": "website",
+    "categories": ["programming", "tutorials", "web development"],
+    "dateAdded": "2025-02-28"
+  },
+  {
+    "id": "4",
+    "title": "LeetCode",
+    "description": "Extensive collection of coding problems and contests for technical interview preparation.",
+    "url": "https://leetcode.com/",
+    "type": "website",
+    "categories": ["programming", "practice", "interview preparation"],
+    "dateAdded": "2025-02-28"
+  },
+  {
+    "id": "5",
+    "title": "CodeBasics",
+    "description": "Free online programming courses with interactive coding environments.",
+    "url": "https://code-basics.com/",
+    "type": "website",
+    "categories": ["programming", "courses", "interactive"],
+    "dateAdded": "2025-02-28"
+  },
+  {
+    "id": "6",
+    "title": "Apti4All",
+    "description": "Free online preparation for aptitude exams with practice questions and study materials.",
+    "url": "https://apti4all.com/",
+    "type": "website",
+    "categories": ["aptitude", "practice", "study materials"],
+    "dateAdded": "2025-02-28"
+  },
+  {
+    "id": "7",
+    "title": "CS Circles",
+    "description": "In-browser Python course offering interactive lessons and exercises for beginners.",
+    "url": "https://cscircles.cemc.uwaterloo.ca/",
+    "type": "website",
+    "categories": ["programming", "Python", "tutorials"],
+    "dateAdded": "2025-02-28"
+  },
+  {
+    "id": "8",
+    "title": "Thonny",
+    "description": "Free and open-source integrated development environment (IDE) for Python, designed for beginners.",
+    "url": "https://thonny.org/",
+    "type": "website",
+    "categories": ["programming", "Python", "IDE"],
+    "dateAdded": "2025-02-28"
+  },
+  {
+    "id": "9",
+    "title": "Codecademy",
+    "description": "Interactive coding tutorials covering various programming languages and topics.",
+    "url": "https://www.codecademy.com/",
+    "type": "website",
+    "categories": ["programming", "tutorials", "interactive"],
+    "dateAdded": "2025-02-28"
+  },
+  {
+    "id": "10",
+    "title": "The Odin Project",
+    "description": "Free, open-source curriculum for learning web development from scratch.",
+    "url": "https://www.theodinproject.com/",
+    "type": "website",
+    "categories": ["programming", "web development", "curriculum"],
+    "dateAdded": "2025-02-28"
+  },
+  {
+    "id": "11",
+    "title": "EbookFoundation/free-programming-books",
+    "description": "A comprehensive collection of free programming books covering various languages and topics.",
+    "url": "https://github.com/EbookFoundation/free-programming-books",
+    "type": "github",
+    "categories": ["programming", "books", "resources"],
+    "dateAdded": "2025-02-28"
+  },
+  {
+    "id": "12",
+    "title": "Practice Aptitude Tests",
+    "description": "Free practice aptitude tests with questions and answers written by experts.",
+    "url": "https://www.practiceaptitudetests.com/",
+    "type": "website",
+    "categories": ["aptitude", "practice", "tests"],
+    "dateAdded": "2025-02-28"
+  },
+  {
+    "id": "13",
+    "title": "AssessmentDay",
+    "description": "Free online practice aptitude tests with expert tips and guides.",
+    "url": "https://www.assessmentday.com/",
+    "type": "website",
+    "categories": ["aptitude", "practice", "guides"],
+    "dateAdded": "2025-02-28"
+  },
+  {
+    "id": "14",
+    "title": "Graduates First",
+    "description": "Free aptitude test practice questions with worked solutions and expert insights.",
+    "url": "https://www.graduatesfirst.com/psychometrics/aptitude-test",
+    "type": "website",
+    "categories": ["aptitude", "practice", "solutions"],
+    "dateAdded": "2025-02-28"
+  },
+  {
+    "id": "15",
+    "title": "MIT OpenCourseWare",
+    "description": "Free lecture notes, exams, and videos from MIT covering a wide range of subjects.",
+    "url": "https://ocw.mit.edu/",
+    "type": "website",
+    "categories": ["education", "lectures", "resources"],
+    "dateAdded": "2025-02-28"
+  },
+  {
+    "id": "16",
+    "title": "Khan Academy",
+    "description": "Free online courses, lessons, and practice in various subjects including math and computing.",
+    "url": "https://www.khanacademy.org/",
+    "type": "website",
+    "categories": ["education", "courses", "practice"],
+    "dateAdded": "2025-02-28"
+  },
+  {
+    "id": "17",
+    "title": "Coursera",
+    "description": "Free and paid courses from top universities and companies in various subjects.",
+    "url": "https://www.coursera.org/",
+    "type": "website",
+    "categories": ["education", "courses", "certificates"],
+    "dateAdded": "2025-02-28"
+  },
   // Database resources
   {
     id: '26',
