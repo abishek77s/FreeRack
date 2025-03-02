@@ -1,7 +1,5 @@
 import React from "react";
 import {
-  ExternalLink,
-  Star,
   Github,
   Youtube,
   BookOpen,
@@ -40,7 +38,7 @@ const ResourceCard: React.FC<ResourceCardProps> = ({ resource }) => {
       href={resource.url}
       target="_blank"
       rel="noopener noreferrer"
-      className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300"
+      className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg hover:scale-105 transition-transform transition-shadow duration-300"
     >
       <div className="p-5">
         <div className="flex items-start justify-between">
@@ -55,12 +53,6 @@ const ResourceCard: React.FC<ResourceCardProps> = ({ resource }) => {
               </span>
             )}
           </div>
-          {resource.stars && (
-            <div className="flex items-center text-yellow-500">
-              <Star className="h-4 w-4 fill-current" />
-              <span className="ml-1 text-sm font-medium">{resource.stars}</span>
-            </div>
-          )}
         </div>
 
         <h3 className="mt-3 text-lg font-semibold text-gray-900 line-clamp-2">
