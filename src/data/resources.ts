@@ -114,7 +114,7 @@ export const resources: Resource[] = [
     description: 'A modern introduction to programming with JavaScript',
     url: 'https://eloquentjavascript.net/',
     type: 'book',
-    categories: ['books', 'programming-languages', 'web-development'],
+    categories: ['books', 'programming-languages', 'web-development',"javascript"],
     author: 'Marijn Haverbeke',
     dateAdded: '2023-01-30'
   },
@@ -124,7 +124,7 @@ export const resources: Resource[] = [
     description: 'A book series diving deep into the core mechanisms of the JavaScript language',
     url: 'https://github.com/getify/You-Dont-Know-JS',
     type: 'book',
-    categories: ['books', 'programming-languages', 'web-development'],
+    categories: ['books', 'programming-languages', 'web-development', "javascript"],
     author: 'Kyle Simpson',
     dateAdded: '2023-02-03'
   },
