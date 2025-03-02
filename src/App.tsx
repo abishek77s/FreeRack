@@ -147,8 +147,8 @@ function App() {
               </div>
             ) : (
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
-                {filteredResources.map((resource) => (
-                  <ResourceCard key={resource.id} resource={resource} />
+                {filteredResources.map((resource, index) => (
+                  <ResourceCard key={index} resource={resource} />
                 ))}
               </div>
             )}
