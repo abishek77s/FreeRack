@@ -16,21 +16,17 @@ import {
   PenTool,
   BrainCircuit,
   Puzzle,
+  NetworkIcon,
   Info,
+  Waypoints,
   Bot,
   Map,
-  Phone,
   Mail,
 } from "lucide-react";
 import { Category } from "../types";
 
 // Main category groups
 export const categoryGroups = [
-  {
-    id: "about",
-    name: "About",
-    categories: ["about", "how-to-use", "roadmap", "contact"],
-  },
   {
     id: "programming",
     name: "Programming & Development",
@@ -52,8 +48,8 @@ export const categoryGroups = [
   },
   {
     id: "ai",
-    name: "Machine Learning & AI",
-    categories: ["machine-learning-ai"],
+    name: "AI & ML",
+    categories: ["machine-learning", "ml-algorithms", "neural-netowrks"],
   },
   {
     id: "networking",
@@ -69,6 +65,11 @@ export const categoryGroups = [
     id: "tools",
     name: "Tools & Design",
     categories: ["tools", "design"],
+  },
+  {
+    id: "about",
+    name: "About",
+    categories: ["about", "how-to-use", "roadmap", "contact"],
   },
 ];
 
@@ -170,10 +171,23 @@ export const categories: Category[] = [
     description: "Fundamental computer science concepts and theory",
   },
   {
-    id: "machine-learning-ai",
-    name: "Machine Learning & AI",
+    id: "machine-learning",
+    name: "Machine Learning",
     icon: <Bot className="h-5 w-5" />,
-    description: "Resources for artificial intelligence, machine learning, and deep learning",
+    description:
+      "Resources for artificial intelligence, machine learning, and deep learning",
+  },
+  {
+    id: "ml-algorithms",
+    name: "ML Algorithms",
+    icon: <NetworkIcon className="h-5 w-5" />,
+    description: "Resources for  ML Algorithms, and deep learning",
+  },
+  {
+    id: "neural-netowrks",
+    name: "Neural Networks",
+    icon: <Waypoints className="h-5 w-5" />,
+    description: "Resources for Neural Networks",
   },
   {
     id: "tools",
@@ -234,4 +248,11 @@ export const programmingLanguageCategories = [
 ];
 
 // All categories combined (for the resource submission form)
-export const allCategories = [...categories.filter(cat => cat.id !== "about" && !["how-to-use", "roadmap", "contact"].includes(cat.id)), ...contentTypeCategories];
+export const allCategories = [
+  ...categories.filter(
+    (cat) =>
+      cat.id !== "about" &&
+      !["how-to-use", "roadmap", "contact"].includes(cat.id)
+  ),
+  ...contentTypeCategories,
+];

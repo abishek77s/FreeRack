@@ -1,20 +1,27 @@
 import React, { useState } from "react";
-import { contentTypeCategories, programmingLanguageCategories } from "../data/categories";
+import {
+  contentTypeCategories,
+  programmingLanguageCategories,
+} from "../data/categories";
 import { ChevronDown } from "lucide-react";
 
 interface ResourceTypeFilterProps {
   selectedType: string | null;
   onSelectType: (typeId: string | null) => void;
+  selectedCategory: string | null;
 }
 
 const ResourceTypeFilter: React.FC<ResourceTypeFilterProps> = ({
   selectedType,
   onSelectType,
+  selectedCategory,
 }) => {
   const [showLanguageDropdown, setShowLanguageDropdown] = useState(false);
   const [selectedLanguage, setSelectedLanguage] = useState<string | null>(null);
-  const [showProgrammingLanguageDropdown, setShowProgrammingLanguageDropdown] = useState(false);
-  const [selectedProgrammingLanguage, setSelectedProgrammingLanguage] = useState<string | null>(null);
+  const [showProgrammingLanguageDropdown, setShowProgrammingLanguageDropdown] =
+    useState(false);
+  const [selectedProgrammingLanguage, setSelectedProgrammingLanguage] =
+    useState<string | null>(null);
 
   const indianLanguages = [
     { id: "hindi", name: "Hindi" },
@@ -48,7 +55,9 @@ const ResourceTypeFilter: React.FC<ResourceTypeFilterProps> = ({
   };
 
   const handleProgrammingLanguageSelect = (languageId: string) => {
-    setSelectedProgrammingLanguage(languageId === selectedProgrammingLanguage ? null : languageId);
+    setSelectedProgrammingLanguage(
+      languageId === selectedProgrammingLanguage ? null : languageId
+    );
     setShowProgrammingLanguageDropdown(false);
   };
 
@@ -86,16 +95,19 @@ const ResourceTypeFilter: React.FC<ResourceTypeFilterProps> = ({
         <div className="mt-2 md:mt-0 flex flex-wrap gap-2">
           {/* Programming Language Filter */}
           <div className="relative">
-            <button
-              onClick={toggleProgrammingLanguageDropdown}
-              className="inline-flex items-center px-3 py-1.5 rounded-md text-sm font-medium bg-gray-100 text-gray-800 hover:bg-gray-200"
-            >
-              {selectedProgrammingLanguage
-                ? programmingLanguageCategories.find((l) => l.id === selectedProgrammingLanguage)?.name
-                : "Programming Language"}
-              <ChevronDown className="ml-1 h-4 w-4" />
-            </button>
-
+            {selectedCategory == "programming-languages" && (
+              <button
+                onClick={toggleProgrammingLanguageDropdown}
+                className="inline-flex items-center px-3 py-1.5 rounded-md text-sm font-medium bg-gray-100 text-gray-800 hover:bg-gray-200"
+              >
+                {selectedProgrammingLanguage
+                  ? programmingLanguageCategories.find(
+                      (l) => l.id === selectedProgrammingLanguage
+                    )?.name
+                  : "Programming Language"}
+                <ChevronDown className="ml-1 h-4 w-4" />
+              </button>
+            )}
             {showProgrammingLanguageDropdown && (
               <div className="absolute z-10 mt-1 w-48 bg-white rounded-md shadow-lg py-1 ring-1 ring-black ring-opacity-5 focus:outline-none max-h-60 overflow-y-auto">
                 {programmingLanguageCategories.map((language) => (

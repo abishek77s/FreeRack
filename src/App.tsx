@@ -75,8 +75,8 @@ function App() {
           resource.description
             .toLowerCase()
             .includes(searchQuery.toLowerCase()) ||
-          (resource.tags && 
-            resource.tags.some(tag => 
+          (resource.tags &&
+            resource.tags.some((tag) =>
               tag.toLowerCase().includes(searchQuery.toLowerCase())
             ));
 
@@ -84,10 +84,11 @@ function App() {
   });
 
   // Check if we're showing the about content or its subcategories
-  const showAboutContent = selectedCategory === "about" || 
-                          selectedCategory === "how-to-use" || 
-                          selectedCategory === "roadmap" || 
-                          selectedCategory === "contact";
+  const showAboutContent =
+    selectedCategory === "about" ||
+    selectedCategory === "how-to-use" ||
+    selectedCategory === "roadmap" ||
+    selectedCategory === "contact";
 
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col">
@@ -134,6 +135,7 @@ function App() {
 
             {!showAboutContent && (
               <ResourceTypeFilter
+                selectedCategory={selectedCategory}
                 selectedType={selectedContentType}
                 onSelectType={setSelectedContentType}
               />
