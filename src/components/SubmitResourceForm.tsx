@@ -17,6 +17,7 @@ type FormData = {
   type: ResourceType;
   categories: string[];
   author?: string;
+  tags?: string[];
 };
 
 const resourceTypes: ResourceType[] = [
@@ -32,13 +33,40 @@ const resourceTypes: ResourceType[] = [
 const SubmitResourceForm: React.FC<SubmitResourceFormProps> = ({ onClose, onSuccess }) => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [tagInput, setTagInput] = useState('');
   
   const { 
     register, 
     handleSubmit, 
     control,
+    setValue,
+    watch,
     formState: { errors } 
-  } = useForm<FormData>();
+  } = useForm<FormData>({
+    defaultValues: {
+      tags: []
+    }
+  });
+
+  const tags = watch('tags') || [];
+
+  const handleAddTag = () => {
+    if (tagInput.trim() && !tags.includes(tagInput.trim())) {
+      setValue('tags', [...tags, tagInput.trim()]);
+      setTagInput('');
+    }
+  };
+
+  const handleRemoveTag = (tagToRemove: string) => {
+    setValue('tags', tags.filter(tag => tag !== tagToRemove));
+  };
+
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      handleAddTag();
+    }
+  };
 
   const onSubmit = async (data: FormData) => {
     setIsSubmitting(true);
@@ -176,6 +204,55 @@ const SubmitResourceForm: React.FC<SubmitResourceFormProps> = ({ onClose, onSucc
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                 placeholder="Resource author"
                 {...register('author')}
+              />
+            </div>
+            
+            <div className="md:col-span-2">
+              <label className="block mb-2 text-sm font-medium text-gray-900">
+                Tags (optional)
+              </label>
+              <div className="flex items-center mb-2">
+                <input
+                  type="text"
+                  value={tagInput}
+                  onChange={(e) => setTagInput(e.target.value)}
+                  onKeyDown={handleKeyDown}
+                  placeholder="Add tags (press Enter)"
+                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                />
+                <button
+                  type="button"
+                  onClick={handleAddTag}
+                  className="ml-2 px-4 py-2.5 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
+                >
+                  Add
+                </button>
+              </div>
+              
+              {tags.length > 0 && (
+                <div className="flex flex-wrap gap-2 mb-3">
+                  {tags.map((tag, index) => (
+                    <span 
+                      key={index} 
+                      className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800"
+                    >
+                      {tag}
+                      <button
+                        type="button"
+                        onClick={() => handleRemoveTag(tag)}
+                        className="ml-1.5 text-blue-600 hover:text-blue-800"
+                      >
+                        ×
+                      </button>
+                    </span>
+                  ))}
+                </div>
+              )}
+              
+              <Controller
+                control={control}
+                name="tags"
+                render={() => <></>} // Hidden controller, we're managing the state manually
               />
             </div>
             

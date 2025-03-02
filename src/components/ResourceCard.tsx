@@ -38,7 +38,7 @@ const ResourceCard: React.FC<ResourceCardProps> = ({ resource }) => {
       href={resource.url}
       target="_blank"
       rel="noopener noreferrer"
-      className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg hover:scale-105 transition-transform transition-shadow duration-300"
+      className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg hover:scale-105 transition-transform  duration-300"
     >
       <div className="p-5">
         <div className="flex items-start justify-between">
@@ -82,7 +82,25 @@ const ResourceCard: React.FC<ResourceCardProps> = ({ resource }) => {
           )}
         </div>
 
-        <div className=" pt-4 border-t border-gray-100 flex justify-between items-center">
+        {resource.tags && resource.tags.length > 0 && (
+          <div className="mt-2 flex flex-wrap gap-2">
+            {resource.tags.slice(0, 3).map((tag, index) => (
+              <span
+                key={index}
+                className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800"
+              >
+                #{tag}
+              </span>
+            ))}
+            {resource.tags.length > 3 && (
+              <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-800">
+                +{resource.tags.length - 3} more
+              </span>
+            )}
+          </div>
+        )}
+
+        <div className="pt-4 border-t border-gray-100 flex justify-between items-center">
           <span className="text-xs text-gray-500">
             {resource.author && `By ${resource.author}`}
           </span>

@@ -15,6 +15,7 @@ export interface Resource {
   tags?: string[];
   dateAdded: string;
   language?: string;
+  approved?: boolean;
 }
 
 export interface Category {

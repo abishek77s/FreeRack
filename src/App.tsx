@@ -74,7 +74,11 @@ function App() {
         : resource.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
           resource.description
             .toLowerCase()
-            .includes(searchQuery.toLowerCase());
+            .includes(searchQuery.toLowerCase()) ||
+          (resource.tags && 
+            resource.tags.some(tag => 
+              tag.toLowerCase().includes(searchQuery.toLowerCase())
+            ));
 
     return matchesCategory && matchesContentType && matchesSearch;
   });

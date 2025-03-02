@@ -17,6 +17,7 @@ import {
   BrainCircuit,
   Puzzle,
   Info,
+  Bot,
 } from "lucide-react";
 import { Category } from "../types";
 
@@ -44,7 +45,7 @@ export const categoryGroups = [
   {
     id: "cs",
     name: "Computer Science & System Design",
-    categories: ["system-design", "computer-science"],
+    categories: ["system-design", "computer-science", "machine-learning-ai"],
   },
   {
     id: "networking",
@@ -143,6 +144,12 @@ export const categories: Category[] = [
     description: "Fundamental computer science concepts and theory",
   },
   {
+    id: "machine-learning-ai",
+    name: "Machine Learning & AI",
+    icon: <Bot className="h-5 w-5" />,
+    description: "Resources for artificial intelligence, machine learning, and deep learning",
+  },
+  {
     id: "tools",
     name: "Developer Tools",
     icon: <Terminal className="h-5 w-5" />,
@@ -185,4 +192,4 @@ export const contentTypeCategories: Category[] = [
 ];
 
 // All categories combined (for the resource submission form)
-export const allCategories = [...categories, ...contentTypeCategories];
+export const allCategories = [...categories.filter(cat => cat.id !== "readme"), ...contentTypeCategories];
