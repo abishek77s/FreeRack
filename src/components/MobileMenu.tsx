@@ -16,10 +16,11 @@ const MobileMenu: React.FC<MobileMenuProps> = ({
 }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [expandedGroups, setExpandedGroups] = useState<Record<string, boolean>>({
-    readme: true,
+    about: true,
     programming: true,
     data: false,
     cs: false,
+    ai: false,
     networking: false,
     skills: false,
     tools: false

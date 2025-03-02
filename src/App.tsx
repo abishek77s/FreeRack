@@ -83,8 +83,11 @@ function App() {
     return matchesCategory && matchesContentType && matchesSearch;
   });
 
-  // Check if we're showing the readme content
-  const showReadme = selectedCategory === "readme";
+  // Check if we're showing the about content or its subcategories
+  const showAboutContent = selectedCategory === "about" || 
+                          selectedCategory === "how-to-use" || 
+                          selectedCategory === "roadmap" || 
+                          selectedCategory === "contact";
 
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col">
@@ -115,7 +118,7 @@ function App() {
                 </h1>
               </div>
 
-              {!showReadme && (
+              {!showAboutContent && (
                 <div className="relative w-full md:w-auto">
                   <input
                     type="text"
@@ -129,15 +132,15 @@ function App() {
               )}
             </div>
 
-            {!showReadme && (
+            {!showAboutContent && (
               <ResourceTypeFilter
                 selectedType={selectedContentType}
                 onSelectType={setSelectedContentType}
               />
             )}
 
-            {showReadme ? (
-              <ReadmeContent />
+            {showAboutContent ? (
+              <ReadmeContent selectedCategory={selectedCategory} />
             ) : loading ? (
               <div className="flex justify-center items-center py-12">
                 <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"></div>

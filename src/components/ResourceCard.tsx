@@ -38,7 +38,7 @@ const ResourceCard: React.FC<ResourceCardProps> = ({ resource }) => {
       href={resource.url}
       target="_blank"
       rel="noopener noreferrer"
-      className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg hover:scale-105 transition-transform  duration-300"
+      className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg hover:scale-105 transition-transform transition-shadow duration-300"
     >
       <div className="p-5">
         <div className="flex items-start justify-between">

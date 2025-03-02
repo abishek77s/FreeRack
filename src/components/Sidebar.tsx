@@ -16,10 +16,11 @@ const Sidebar: React.FC<SidebarProps> = ({
 }) => {
   const [expandedGroups, setExpandedGroups] = useState<Record<string, boolean>>(
     {
-      readme: false,
+      about: false,
       programming: false,
       data: false,
       cs: false,
+      ai: false,
       networking: false,
       skills: false,
       tools: false,

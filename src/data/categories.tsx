@@ -18,15 +18,18 @@ import {
   Puzzle,
   Info,
   Bot,
+  Map,
+  Phone,
+  Mail,
 } from "lucide-react";
 import { Category } from "../types";
 
 // Main category groups
 export const categoryGroups = [
   {
-    id: "readme",
-    name: "Read Me",
-    categories: ["readme"],
+    id: "about",
+    name: "About",
+    categories: ["about", "how-to-use", "roadmap", "contact"],
   },
   {
     id: "programming",
@@ -45,7 +48,12 @@ export const categoryGroups = [
   {
     id: "cs",
     name: "Computer Science & System Design",
-    categories: ["system-design", "computer-science", "machine-learning-ai"],
+    categories: ["system-design", "computer-science"],
+  },
+  {
+    id: "ai",
+    name: "Machine Learning & AI",
+    categories: ["machine-learning-ai"],
   },
   {
     id: "networking",
@@ -66,10 +74,28 @@ export const categoryGroups = [
 
 export const categories: Category[] = [
   {
-    id: "readme",
-    name: "Read Me",
+    id: "about",
+    name: "About",
     icon: <Info className="h-5 w-5" />,
     description: "About FreeRack and how to use this resource collection",
+  },
+  {
+    id: "how-to-use",
+    name: "How to Use",
+    icon: <BookOpen className="h-5 w-5" />,
+    description: "Learn how to use FreeRack effectively",
+  },
+  {
+    id: "roadmap",
+    name: "Roadmap",
+    icon: <Map className="h-5 w-5" />,
+    description: "Future plans and development roadmap for FreeRack",
+  },
+  {
+    id: "contact",
+    name: "Contact",
+    icon: <Mail className="h-5 w-5" />,
+    description: "Get in touch with the FreeRack team",
   },
   {
     id: "programming-languages",
@@ -191,5 +217,21 @@ export const contentTypeCategories: Category[] = [
   },
 ];
 
+// Programming language categories for filtering
+export const programmingLanguageCategories = [
+  { id: "javascript", name: "JavaScript" },
+  { id: "python", name: "Python" },
+  { id: "java", name: "Java" },
+  { id: "csharp", name: "C#" },
+  { id: "cpp", name: "C++" },
+  { id: "go", name: "Go" },
+  { id: "rust", name: "Rust" },
+  { id: "ruby", name: "Ruby" },
+  { id: "php", name: "PHP" },
+  { id: "swift", name: "Swift" },
+  { id: "kotlin", name: "Kotlin" },
+  { id: "typescript", name: "TypeScript" },
+];
+
 // All categories combined (for the resource submission form)
-export const allCategories = [...categories.filter(cat => cat.id !== "readme"), ...contentTypeCategories];
+export const allCategories = [...categories.filter(cat => cat.id !== "about" && !["how-to-use", "roadmap", "contact"].includes(cat.id)), ...contentTypeCategories];
