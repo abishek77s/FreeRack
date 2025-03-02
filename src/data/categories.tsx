@@ -20,7 +20,6 @@ import {
   Info,
   Waypoints,
   Bot,
-  Map,
   Mail,
 } from "lucide-react";
 import { Category } from "../types";
@@ -69,7 +68,7 @@ export const categoryGroups = [
   {
     id: "about",
     name: "About",
-    categories: ["about", "how-to-use", "roadmap", "contact"],
+    categories: ["about", "how-to-use", "contact"],
   },
 ];
 
@@ -85,12 +84,6 @@ export const categories: Category[] = [
     name: "How to Use",
     icon: <BookOpen className="h-5 w-5" />,
     description: "Learn how to use FreeRack effectively",
-  },
-  {
-    id: "roadmap",
-    name: "Roadmap",
-    icon: <Map className="h-5 w-5" />,
-    description: "Future plans and development roadmap for FreeRack",
   },
   {
     id: "contact",
@@ -250,9 +243,7 @@ export const programmingLanguageCategories = [
 // All categories combined (for the resource submission form)
 export const allCategories = [
   ...categories.filter(
-    (cat) =>
-      cat.id !== "about" &&
-      !["how-to-use", "roadmap", "contact"].includes(cat.id)
+    (cat) => cat.id !== "about" && !["how-to-use", "contact"].includes(cat.id)
   ),
   ...contentTypeCategories,
 ];

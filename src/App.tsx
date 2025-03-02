@@ -19,6 +19,7 @@ function App() {
   const [searchQuery, setSearchQuery] = useState("");
   const [resources, setResources] = useState<Resource[]>(initialResources);
   const [loading, setLoading] = useState(true);
+  console.log(selectedCategory);
 
   useEffect(() => {
     const fetchResources = async () => {
@@ -87,7 +88,6 @@ function App() {
   const showAboutContent =
     selectedCategory === "about" ||
     selectedCategory === "how-to-use" ||
-    selectedCategory === "roadmap" ||
     selectedCategory === "contact";
 
   return (
@@ -142,7 +142,7 @@ function App() {
             )}
 
             {showAboutContent ? (
-              <ReadmeContent selectedCategory={selectedCategory} />
+              <ReadmeContent />
             ) : loading ? (
               <div className="flex justify-center items-center py-12">
                 <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"></div>
