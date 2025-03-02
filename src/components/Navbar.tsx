@@ -41,15 +41,6 @@ const Navbar: React.FC = () => {
           </div>
 
           <nav className="hidden md:flex space-x-4 lg:space-x-4">
-            <a
-              href="https://education.github.com/pack"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center text-white bg-green-600 hover:bg-green-700 px-4 py-2 rounded-md text-sm font-medium"
-            >
-              <Gift className="h-4 w-4 mr-1" />
-              Claim Github Student Pack
-            </a>
             <button
               onClick={() => setShowSubmitForm(true)}
               className="inline-flex items-center text-white bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-md text-sm font-medium"
