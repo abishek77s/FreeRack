@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Github,
   Youtube,
@@ -6,6 +6,8 @@ import {
   FileText,
   Database,
   Globe,
+  Tag,
+  PlaySquare,
 } from "lucide-react";
 import { Resource } from "../types";
 
@@ -14,6 +16,8 @@ interface ResourceCardProps {
 }
 
 const ResourceCard: React.FC<ResourceCardProps> = ({ resource }) => {
+  const [showTags, setShowTags] = useState(false);
+
   const getResourceTypeIcon = () => {
     switch (resource.type) {
       case "github":
@@ -28,9 +32,17 @@ const ResourceCard: React.FC<ResourceCardProps> = ({ resource }) => {
         return <BookOpen className="h-5 w-5 text-green-600" />;
       case "database":
         return <Database className="h-5 w-5 text-purple-600" />;
+      case "playlist":
+        return <PlaySquare className="h-5 w-5 text-red-600" />;
       default:
         return <Globe className="h-5 w-5 text-gray-600" />;
     }
+  };
+
+  const toggleTags = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setShowTags(!showTags);
   };
 
   return (
@@ -38,7 +50,7 @@ const ResourceCard: React.FC<ResourceCardProps> = ({ resource }) => {
       href={resource.url}
       target="_blank"
       rel="noopener noreferrer"
-      className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg hover:scale-105 transition-transform  duration-300"
+      className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg hover:scale-105 transition-transform duration-300"
     >
       <div className="p-5">
         <div className="flex items-start justify-between">
@@ -53,6 +65,15 @@ const ResourceCard: React.FC<ResourceCardProps> = ({ resource }) => {
               </span>
             )}
           </div>
+          {resource.tags && resource.tags.length > 0 && (
+            <button
+              onClick={toggleTags}
+              className="text-gray-400 hover:text-blue-600 transition-colors"
+              title={showTags ? "Hide tags" : "Show tags"}
+            >
+              <Tag className={`h-4 w-4 ${showTags ? "text-blue-600" : ""}`} />
+            </button>
+          )}
         </div>
 
         <h3 className="mt-3 text-lg font-semibold text-gray-900 line-clamp-2">
@@ -82,9 +103,9 @@ const ResourceCard: React.FC<ResourceCardProps> = ({ resource }) => {
           )}
         </div>
 
-        {resource.tags && resource.tags.length > 0 && (
+        {showTags && resource.tags && resource.tags.length > 0 && (
           <div className="mt-2 flex flex-wrap gap-2">
-            {resource.tags.slice(0, 3).map((tag, index) => (
+            {resource.tags.map((tag, index) => (
               <span
                 key={index}
                 className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800"
@@ -92,11 +113,6 @@ const ResourceCard: React.FC<ResourceCardProps> = ({ resource }) => {
                 #{tag}
               </span>
             ))}
-            {resource.tags.length > 3 && (
-              <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-800">
-                +{resource.tags.length - 3} more
-              </span>
-            )}
           </div>
         )}
 

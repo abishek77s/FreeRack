@@ -9,19 +9,24 @@ interface ResourceTypeFilterProps {
   selectedType: string | null;
   onSelectType: (typeId: string | null) => void;
   selectedCategory: string | null;
+  selectedLanguage: string | null;
+  setSelectedLanguage: (language: string | null) => void;
+  selectedProgrammingLanguage: string | null;
+  setSelectedProgrammingLanguage: (language: string | null) => void;
 }
 
 const ResourceTypeFilter: React.FC<ResourceTypeFilterProps> = ({
   selectedType,
   onSelectType,
   selectedCategory,
+  selectedLanguage,
+  setSelectedLanguage,
+  selectedProgrammingLanguage,
+  setSelectedProgrammingLanguage,
 }) => {
   const [showLanguageDropdown, setShowLanguageDropdown] = useState(false);
-  const [selectedLanguage, setSelectedLanguage] = useState<string | null>(null);
   const [showProgrammingLanguageDropdown, setShowProgrammingLanguageDropdown] =
     useState(false);
-  const [selectedProgrammingLanguage, setSelectedProgrammingLanguage] =
-    useState<string | null>(null);
 
   const indianLanguages = [
     { id: "hindi", name: "Hindi" },
@@ -61,6 +66,9 @@ const ResourceTypeFilter: React.FC<ResourceTypeFilterProps> = ({
     setShowProgrammingLanguageDropdown(false);
   };
 
+  // Check if language filter should be shown (only for YouTube and Playlists)
+  const showLanguageFilter = selectedType === "youtube" || selectedType === "playlists";
+
   return (
     <div className="mb-6">
       <div className="flex flex-wrap items-center justify-between">
@@ -95,10 +103,14 @@ const ResourceTypeFilter: React.FC<ResourceTypeFilterProps> = ({
         <div className="mt-2 md:mt-0 flex flex-wrap gap-2">
           {/* Programming Language Filter */}
           <div className="relative">
-            {selectedCategory == "programming-languages" && (
+            {selectedCategory === "programming-languages" && (
               <button
                 onClick={toggleProgrammingLanguageDropdown}
-                className="inline-flex items-center px-3 py-1.5 rounded-md text-sm font-medium bg-gray-100 text-gray-800 hover:bg-gray-200"
+                className={`inline-flex items-center px-3 py-1.5 rounded-md text-sm font-medium ${
+                  selectedProgrammingLanguage
+                    ? "bg-blue-100 text-blue-800"
+                    : "bg-gray-100 text-gray-800 hover:bg-gray-200"
+                }`}
               >
                 {selectedProgrammingLanguage
                   ? programmingLanguageCategories.find(
@@ -127,12 +139,16 @@ const ResourceTypeFilter: React.FC<ResourceTypeFilterProps> = ({
             )}
           </div>
 
-          {/* Regional Language Filter (only for YouTube) */}
-          {selectedType === "youtube" && (
+          {/* Regional Language Filter (only for YouTube and Playlists) */}
+          {showLanguageFilter && (
             <div className="relative">
               <button
                 onClick={toggleLanguageDropdown}
-                className="inline-flex items-center px-3 py-1.5 rounded-md text-sm font-medium bg-gray-100 text-gray-800 hover:bg-gray-200"
+                className={`inline-flex items-center px-3 py-1.5 rounded-md text-sm font-medium ${
+                  selectedLanguage
+                    ? "bg-blue-100 text-blue-800"
+                    : "bg-gray-100 text-gray-800 hover:bg-gray-200"
+                }`}
               >
                 {selectedLanguage
                   ? indianLanguages.find((l) => l.id === selectedLanguage)?.name

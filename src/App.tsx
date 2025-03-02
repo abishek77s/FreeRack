@@ -6,6 +6,10 @@ import MobileMenu from "./components/MobileMenu";
 import ResourceCard from "./components/ResourceCard";
 import ResourceTypeFilter from "./components/ResourceTypeFilter";
 import ReadmeContent from "./components/ReadmeContent";
+import HowToUse from "./components/HowToUse";
+import Contact from "./components/Contact";
+
+import NoResourcesMessage from "./components/NoResourcesMessage";
 import { resources as initialResources } from "./data/resources";
 import { categories } from "./data/categories";
 import { supabase } from "./lib/supabase";
@@ -19,7 +23,16 @@ function App() {
   const [searchQuery, setSearchQuery] = useState("");
   const [resources, setResources] = useState<Resource[]>(initialResources);
   const [loading, setLoading] = useState(true);
-  console.log(selectedCategory);
+  const [selectedLanguage, setSelectedLanguage] = useState<string | null>(
+    localStorage.getItem("selectedLanguage")
+  );
+  const [selectedProgrammingLanguage, setSelectedProgrammingLanguage] =
+    useState<string | null>(
+      localStorage.getItem("selectedProgrammingLanguage")
+    );
+  const [showFeatured, setShowFeatured] = useState<boolean>(
+    selectedCategory === null && selectedContentType === null
+  );
 
   useEffect(() => {
     const fetchResources = async () => {
@@ -57,6 +70,35 @@ function App() {
     fetchResources();
   }, []);
 
+  // Save selected filters to localStorage when they change
+  useEffect(() => {
+    if (selectedLanguage) {
+      localStorage.setItem("selectedLanguage", selectedLanguage);
+    } else {
+      localStorage.removeItem("selectedLanguage");
+    }
+  }, [selectedLanguage]);
+
+  useEffect(() => {
+    if (selectedProgrammingLanguage) {
+      localStorage.setItem(
+        "selectedProgrammingLanguage",
+        selectedProgrammingLanguage
+      );
+    } else {
+      localStorage.removeItem("selectedProgrammingLanguage");
+    }
+  }, [selectedProgrammingLanguage]);
+
+  // Update featured state when category or content type changes
+  useEffect(() => {
+    setShowFeatured(
+      selectedCategory === null &&
+        selectedContentType === null &&
+        searchQuery === ""
+    );
+  }, [selectedCategory, selectedContentType, searchQuery]);
+
   const filteredResources = resources.filter((resource) => {
     // Filter by main category
     const matchesCategory = selectedCategory
@@ -66,6 +108,18 @@ function App() {
     // Filter by content type
     const matchesContentType = selectedContentType
       ? resource.categories.includes(selectedContentType)
+      : true;
+
+    // Filter by language (for YouTube resources and playlists)
+    const matchesLanguage = selectedLanguage
+      ? resource.type === "youtube" || resource.type === "playlist"
+        ? resource.language === selectedLanguage
+        : true
+      : true;
+
+    // Filter by programming language
+    const matchesProgrammingLanguage = selectedProgrammingLanguage
+      ? resource.categories.includes(selectedProgrammingLanguage)
       : true;
 
     // Filter by search query
@@ -81,14 +135,26 @@ function App() {
               tag.toLowerCase().includes(searchQuery.toLowerCase())
             ));
 
-    return matchesCategory && matchesContentType && matchesSearch;
+    return (
+      matchesCategory &&
+      matchesContentType &&
+      matchesLanguage &&
+      matchesProgrammingLanguage &&
+      matchesSearch
+    );
   });
 
   // Check if we're showing the about content or its subcategories
-  const showAboutContent =
-    selectedCategory === "about" ||
-    selectedCategory === "how-to-use" ||
-    selectedCategory === "contact";
+  const showAboutContent = selectedCategory === "about";
+  const showHowToUse = selectedCategory === "how-to-use";
+  const showContact = selectedCategory === "contact";
+
+  // Check if we need to show the "no resources" message for language filtering
+  const showNoResourcesForLanguage =
+    selectedLanguage &&
+    (selectedContentType === "youtube" ||
+      selectedContentType === "playlists") &&
+    filteredResources.length === 0;
 
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col">
@@ -115,11 +181,13 @@ function App() {
                 <h1 className="text-2xl md:text-3xl font-bold text-gray-900">
                   {selectedCategory
                     ? categories.find((c) => c.id === selectedCategory)?.name
+                    : showFeatured
+                    ? "Featured Resources"
                     : "All Resources"}
                 </h1>
               </div>
 
-              {!showAboutContent && (
+              {!showAboutContent && !showHowToUse && !showContact && (
                 <div className="relative w-full md:w-auto">
                   <input
                     type="text"
@@ -133,20 +201,33 @@ function App() {
               )}
             </div>
 
-            {!showAboutContent && (
+            {!showAboutContent && !showHowToUse && !showContact && (
               <ResourceTypeFilter
                 selectedCategory={selectedCategory}
                 selectedType={selectedContentType}
                 onSelectType={setSelectedContentType}
+                selectedLanguage={selectedLanguage}
+                setSelectedLanguage={setSelectedLanguage}
+                selectedProgrammingLanguage={selectedProgrammingLanguage}
+                setSelectedProgrammingLanguage={setSelectedProgrammingLanguage}
               />
             )}
 
             {showAboutContent ? (
               <ReadmeContent />
+            ) : showHowToUse ? (
+              <HowToUse />
+            ) : showContact ? (
+              <Contact />
             ) : loading ? (
               <div className="flex justify-center items-center py-12">
                 <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"></div>
               </div>
+            ) : showNoResourcesForLanguage ? (
+              <NoResourcesMessage
+                language={selectedLanguage}
+                onSwitchToEnglish={() => setSelectedLanguage(null)}
+              />
             ) : filteredResources.length === 0 ? (
               <div className="text-center py-12">
                 <p className="text-gray-500 text-lg">

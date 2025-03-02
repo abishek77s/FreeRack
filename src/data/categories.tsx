@@ -21,6 +21,8 @@ import {
   Waypoints,
   Bot,
   Mail,
+  PlaySquare,
+  HelpCircle,
 } from "lucide-react";
 import { Category } from "../types";
 
@@ -82,7 +84,7 @@ export const categories: Category[] = [
   {
     id: "how-to-use",
     name: "How to Use",
-    icon: <BookOpen className="h-5 w-5" />,
+    icon: <HelpCircle className="h-5 w-5" />,
     description: "Learn how to use FreeRack effectively",
   },
   {
@@ -209,6 +211,12 @@ export const contentTypeCategories: Category[] = [
     name: "YouTube Channels",
     icon: <Youtube className="h-5 w-5" />,
     description: "Educational YouTube channels for developers",
+  },
+  {
+    id: "playlists",
+    name: "Playlists",
+    icon: <PlaySquare className="h-5 w-5" />,
+    description: "Curated video playlists on specific topics",
   },
   {
     id: "github-repos",

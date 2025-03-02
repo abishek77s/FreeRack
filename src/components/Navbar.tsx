@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Plus, Gift } from "lucide-react";
+import { Plus, Gift, Map } from "lucide-react";
 import SubmitResourceForm from "./SubmitResourceForm";
 import SubmitSuccess from "./SubmitSuccess";
 
@@ -41,6 +41,15 @@ const Navbar: React.FC = () => {
           </div>
 
           <nav className="hidden md:flex space-x-4 lg:space-x-4">
+            <a
+              href="https://roadmap.sh/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center text-blue-600 border border-blue-600 hover:bg-blue-50 px-4 py-2 rounded-md text-sm font-medium"
+            >
+              <Map className="h-4 w-4 mr-1" />
+              Roadmap
+            </a>
             <button
               onClick={() => setShowSubmitForm(true)}
               className="inline-flex items-center text-white bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-md text-sm font-medium"
@@ -51,6 +60,14 @@ const Navbar: React.FC = () => {
           </nav>
 
           <div className="flex items-center space-x-2 lg:hidden">
+            <a
+              href="https://roadmap.sh/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-blue-600 hover:text-blue-800 p-1"
+            >
+              <Map className="h-6 w-6" />
+            </a>
             <button
               onClick={() => setShowSubmitForm(true)}
               className="md:hidden text-blue-600 hover:text-blue-800 p-1"

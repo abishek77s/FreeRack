@@ -1,6 +1,6 @@
 import { ReactNode } from 'react';
 
-export type ResourceType = 'github' | 'youtube' | 'book' | 'pdf' | 'course' | 'stream' | 'database' | 'website';
+export type ResourceType = 'github' | 'youtube' | 'book' | 'pdf' | 'course' | 'stream' | 'database' | 'website' | 'playlist';
 
 export interface Resource {
   id: string;
